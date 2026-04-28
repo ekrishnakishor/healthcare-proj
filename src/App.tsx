@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './shared/config/firebase';
 import { useAuthStore } from './store/useAuthStore';
 import { Login } from './features/auth/Login';
 import { Layout } from './shared/components/Layout';
+
+// Lazy load the heavy modules
+const Patients = lazy(() => import('./features/patients/Patients'));
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoading } = useAuthStore();
@@ -14,6 +17,13 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   
   return <Layout>{children}</Layout>;
 };
+
+// A clean loading state for code-splitting
+const PageLoader = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+    <p style={{ color: 'var(--text-secondary)' }}>Loading module...</p>
+  </div>
+);
 
 export default function App() {
   const { setUser, setLoading } = useAuthStore();
@@ -31,7 +41,6 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         
-        {/* Protected Routes wrapped in the Layout Shell */}
         <Route 
           path="/dashboard" 
           element={
@@ -40,14 +49,18 @@ export default function App() {
             </ProtectedRoute>
           } 
         />
+        
         <Route 
           path="/patients" 
           element={
             <ProtectedRoute>
-              <h1>Patient Directory</h1>
+              <Suspense fallback={<PageLoader />}>
+                <Patients />
+              </Suspense>
             </ProtectedRoute>
           } 
         />
+        
         <Route 
           path="/analytics" 
           element={
@@ -57,7 +70,6 @@ export default function App() {
           } 
         />
         
-        {/* Catch-all redirect */}
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
