@@ -8,6 +8,7 @@ import { Layout } from './shared/components/Layout';
 
 // Lazy load the heavy modules
 const Patients = lazy(() => import('./features/patients/Patients'));
+const Analytics = lazy(() => import('./features/analytics/Analytics'));
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoading } = useAuthStore();
@@ -61,11 +62,13 @@ export default function App() {
           } 
         />
         
-        <Route 
+     <Route 
           path="/analytics" 
           element={
             <ProtectedRoute>
-              <h1>Analytics</h1>
+              <Suspense fallback={<PageLoader />}>
+                <Analytics />
+              </Suspense>
             </ProtectedRoute>
           } 
         />

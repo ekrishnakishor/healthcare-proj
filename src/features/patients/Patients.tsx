@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { MOCK_PATIENTS } from './mockData';
 import type { Patient } from './types';
 import styles from './Patients.module.css';
+import { useUIStore } from '../../store/useUIStore';
 
 const ITEMS_PER_PAGE = 4;
 
