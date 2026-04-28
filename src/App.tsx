@@ -4,6 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './shared/config/firebase';
 import { useAuthStore } from './store/useAuthStore';
 import { Login } from './features/auth/Login';
+import { Layout } from './shared/components/Layout';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoading } = useAuthStore();
@@ -11,7 +12,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   if (isLoading) return null; 
   if (!user) return <Navigate to="/login" replace />;
   
-  return <>{children}</>;
+  return <Layout>{children}</Layout>;
 };
 
 export default function App() {
@@ -29,17 +30,35 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
+        
+        {/* Protected Routes wrapped in the Layout Shell */}
         <Route 
           path="/dashboard" 
           element={
             <ProtectedRoute>
-              <div style={{ padding: '2rem' }}>
-                <h1>Dashboard (Secure Area)</h1>
-              </div>
+              <h1>Dashboard Overview</h1>
             </ProtectedRoute>
           } 
         />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route 
+          path="/patients" 
+          element={
+            <ProtectedRoute>
+              <h1>Patient Directory</h1>
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/analytics" 
+          element={
+            <ProtectedRoute>
+              <h1>Analytics</h1>
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Catch-all redirect */}
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   );

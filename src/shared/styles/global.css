@@ -1,15 +1,15 @@
 :root {
-  --bg-primary: #f8fafc;
-  --bg-surface: #ffffff;
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-  --accent-color: #2563eb;
-  --accent-hover: #1d4ed8;
-  --border-light: #e2e8f0;
-  --danger-color: #ef4444;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --radius-md: 6px;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --bg-gradient: linear-gradient(135deg, #e5e7eb 0%, #fef3c7 100%);
+  --surface-glass: rgba(255, 255, 255, 0.6);
+  --surface-solid: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --accent-dark: #27272a;
+  --accent-yellow: #fbbf24;
+  --border-soft: rgba(255, 255, 255, 0.6);
+  --radius-pill: 9999px;
+  --radius-card: 24px;
+  --font-sans: 'Outfit', system-ui, sans-serif;
 }
 
 * {
@@ -20,9 +20,11 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-primary);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 a {
