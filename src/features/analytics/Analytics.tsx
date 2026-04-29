@@ -26,7 +26,7 @@ export const Analytics = () => {
       <div className={styles.grid}>
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Patient Status Distribution</h2>
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="99%" height={300}>
             <PieChart>
               <Pie
                 data={statusData}
