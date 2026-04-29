@@ -7,7 +7,7 @@
   --accent-dark: #27272a;
   --accent-yellow: #fbbf24;
   --border-soft: rgba(255, 255, 255, 0.6);
-  --radius-pill: 9999px;
+  --radius-pill: 20px;
   --radius-card: 24px;
   --font-sans: 'Outfit', system-ui, sans-serif;
 }

@@ -40,3 +40,30 @@
   color: var(--text-primary);
   margin-bottom: 2rem;
 }
+
+@media (max-width: 768px) {
+  .container {
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.35rem;
+  }
+
+  /* Override the 400px min-width to prevent horizontal scrolling on phones */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Slightly shrink the cards so they fit better on mobile screens */
+  .card {
+    height: 380px;
+    padding: 1.25rem;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}

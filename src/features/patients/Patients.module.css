@@ -336,3 +336,70 @@
   color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .title {
+    font-size: 1.35rem;
+  }
+
+  /* Make the toggle buttons span the full width of the screen */
+  .toggleGroup {
+    width: 100%;
+    display: flex;
+  }
+
+  .toggleBtn {
+    flex: 1;
+    text-align: center;
+    padding: 0.6rem 1rem;
+  }
+
+  .searchInput {
+    max-width: 100%;
+  }
+
+  /* Transform the horizontal list rows into stacked mobile cards */
+  .listRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .listProfile {
+    width: 100%;
+  }
+
+  .listData {
+    width: 100%;
+    padding: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.85rem;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 1rem 0;
+  }
+
+  .dataGroup {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .listAction {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
