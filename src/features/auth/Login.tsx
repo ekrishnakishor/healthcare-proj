@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './useAuth';
-import styles from './Login.module.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "./useAuth";
+import styles from "./Login.module.css";
 
 export const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isLoggingIn, error } = useAuth();
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ export const Login = () => {
     e.preventDefault();
     await login(email, password);
     if (!error) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     }
   };
 
@@ -21,11 +21,18 @@ export const Login = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <h1 className={styles.title}>System Access</h1>
-        <p className={styles.subtitle}>Enter your credentials to continue</p>
-        
+        <p className={styles.subtitle}>
+          Enter your credentials to continue{" "}
+          <b>
+            Email: test@gmail.com <b>Password: 123456</b>
+          </b>
+        </p>
+
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
-            <label htmlFor="email" className={styles.label}>Email</label>
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -35,9 +42,11 @@ export const Login = () => {
               required
             />
           </div>
-          
+
           <div className={styles.inputGroup}>
-            <label htmlFor="password" className={styles.label}>Password</label>
+            <label htmlFor="password" className={styles.label}>
+              Password
+            </label>
             <input
               id="password"
               type="password"
@@ -48,8 +57,12 @@ export const Login = () => {
             />
           </div>
 
-          <button type="submit" className={styles.button} disabled={isLoggingIn}>
-            {isLoggingIn ? 'Authenticating...' : 'Sign In'}
+          <button
+            type="submit"
+            className={styles.button}
+            disabled={isLoggingIn}
+          >
+            {isLoggingIn ? "Authenticating..." : "Sign In"}
           </button>
         </form>
 
